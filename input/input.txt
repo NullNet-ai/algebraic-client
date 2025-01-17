@@ -1,0 +1,6 @@
+pow 2,20
+pow 2,4
+pow 3,4
+factorial 5
+factorial 10
+factorial 4

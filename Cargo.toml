@@ -1,0 +1,10 @@
+[package]
+name = "algebraic_client"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+algebraic_server = { path = "../algebraic-server" }
+tokio = { version = "1.42.0", features = ["rt-multi-thread", "rt", "macros"] }
+notify = "8.0.0"
+file_monitor = { path = "../arithmetic-workspace/client_libraries/file_monitor" }
