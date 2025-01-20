@@ -8,7 +8,7 @@ pub enum Operation {
 
 impl Operation {
     pub async fn call_server(&self, client: &mut AlgebraicGrpcInterface) -> f32 {
-        println!("Calling server from {self:?}");
+        println!("Calling server with {self:?}");
         let res = match self {
             Operation::Exponent(a, b) => {
                 {
