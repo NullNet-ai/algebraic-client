@@ -1,17 +1,14 @@
 mod operation;
 
 use crate::operation::Operation;
-use algebraic_server::AlgebraicClientImpl;
+use algebraic_server::AlgebraicGrpcInterface;
 use file_monitor::FileMonitor;
 use std::sync::{Arc, Condvar, Mutex};
 use std::thread;
 
 #[tokio::main]
 async fn main() {
-    let client = AlgebraicClientImpl {
-        addr: "localhost".to_string(),
-        port: 50051,
-    };
+    let mut client = AlgebraicGrpcInterface::new("localhost", 50051).await;
 
     let config_pair = Arc::new((Mutex::new(String::new()), Condvar::new()));
     let config_pair_2 = config_pair.clone();
@@ -32,7 +29,7 @@ async fn main() {
             let Some(operation) = parse_line(line) else {
                 panic!("Invalid operation: {line}");
             };
-            operation.call_server(&client).await;
+            operation.call_server(&mut client).await;
         }
     }
 }
@@ -43,11 +40,11 @@ fn parse_line(line: &str) -> Option<Operation> {
         "pow" => {
             let (a, b) = rest.split_once(',')?;
             Some(Operation::Exponent(
-                a.parse::<u64>().ok()?,
-                b.parse::<u64>().ok()?,
+                a.parse::<f32>().ok()?,
+                b.parse::<u32>().ok()?,
             ))
         }
-        "factorial" => Some(Operation::Factorial(rest.parse::<u64>().ok()?)),
+        "factorial" => Some(Operation::Factorial(rest.parse::<u32>().ok()?)),
         _ => None,
     }
 }
