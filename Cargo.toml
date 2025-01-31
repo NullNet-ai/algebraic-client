@@ -4,7 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-algebraic_server = { path = "../algebraic-server" }
+algebraic_server = { git = "https://github.com/NullNet-ai/algebraic-server", branch = "main" }
 tokio = { version = "1.42.0", features = ["rt-multi-thread", "rt", "macros"] }
-notify = "8.0.0"
-file_monitor = { path = "../arithmetic-workspace/client_libraries/file_monitor" }
+file_monitor = { git = "https://github.com/NullNet-ai/arithmetic-workspace", branch = "main" }

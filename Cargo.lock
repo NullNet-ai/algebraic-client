@@ -32,13 +32,13 @@ version = "0.1.0"
 dependencies = [
  "algebraic_server",
  "file_monitor",
- "notify",
  "tokio",
 ]
 
 [[package]]
 name = "algebraic_server"
 version = "0.1.0"
+source = "git+https://github.com/NullNet-ai/algebraic-server?branch=main#40ecf402883b7cb6a71e66a9c574e20a5438d94e"
 dependencies = [
  "multiply",
  "prost",
@@ -252,6 +252,7 @@ checksum = "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be"
 [[package]]
 name = "file_monitor"
 version = "0.1.0"
+source = "git+https://github.com/NullNet-ai/arithmetic-workspace?branch=main#9b1c14814358ecf097d71705db1f75b4b12a21cf"
 dependencies = [
  "notify",
 ]
@@ -633,6 +634,7 @@ checksum = "defc4c55412d89136f966bbb339008b474350e5e6e78d2714439c386b3137a03"
 [[package]]
 name = "multiply"
 version = "0.1.0"
+source = "git+https://github.com/NullNet-ai/arithmetic-workspace?branch=main#9b1c14814358ecf097d71705db1f75b4b12a21cf"
 
 [[package]]
 name = "notify"
