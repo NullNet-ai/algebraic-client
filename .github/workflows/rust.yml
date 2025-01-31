@@ -1,0 +1,42 @@
+name: Rust
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CARGO_TERM_COLOR: always
+
+# Linters inspired from here: https://github.com/actions-rs/meta/blob/master/recipes/quickstart.md
+jobs:
+
+  rust:
+    timeout-minutes: 10
+    name: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - os: macos
+          - os: ubuntu
+          - os: windows
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: fmt
+        run: cargo fmt --all -- --check
+
+      - name: build
+        run: cargo build --verbose
+
+      - name: clippy
+        run: cargo clippy -- -D warnings
+
+      - name: test
+        run: cargo test -- --nocapture
